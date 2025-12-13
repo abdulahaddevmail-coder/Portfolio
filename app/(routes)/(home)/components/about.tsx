@@ -11,7 +11,7 @@ export const About = () => {
   const isMobile = useMediaQuery("(max-width: 640px)");
 
   return (
-    <section className="w-[90%] lg:w-[75%] mx-auto bg-neutral-200 dark:bg-secondary-foreground rounded-4xl md:px-10 flex flex-col-reverse md:flex-row md:flex-nowrap justify-between items-center gap-10">
+    <section className="w-[90%] lg:w-[75%] mx-auto bg-neutral-200 dark:bg-secondary-foreground rounded-3xl md:rounded-4xl md:px-10 flex flex-col-reverse md:flex-row md:flex-nowrap justify-between items-center gap-10">
       <div className="flex flex-col md:flex-row gap-4.5 md:basis-1/2 overflow-hidden md:h-[380px] lg:h-[448px] rounded-b-4xl md:rounded-none">
         <ScrollParallax from={0} to={-100} dir={isMobile ? "x" : "y"} className="will-change-transform">
           <div className="flex md:flex-col gap-4.5">

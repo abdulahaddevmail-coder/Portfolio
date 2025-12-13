@@ -97,7 +97,7 @@ export const Contact = () => {
     //     </motion.div>
     //   </div>
     // </section>
-    <section className="section py-20">
+    <section className="section py-10 md:py-20">
       <div className="w-[90%] md:w-[85%] lg:w-[75%] rounded-4xl mx-auto bg-secondary-foreground flex flex-col md:flex-row justify-between items-center py-8 px-7.5 md:py-14 lg:py-16 md:px-10 lg:px-12">
         <div className="flex flex-col text-background">
           <h2 className="text-3xl lg:text-4xl lg:text-[34px] font-extrabold sm:font-bold md:font-extrabold mb-6 md:w-[77%] lg:w-[65%]">

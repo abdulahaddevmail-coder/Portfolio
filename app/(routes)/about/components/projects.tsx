@@ -12,12 +12,12 @@ const projects: IProject[] = [
     description: "A modern and interactive personal portfolio showcasing my projects, skills, and achievement.",
     githubLink: "https://github.com/abdulahaddevmail-coder/Portfolio",
     demoLink: "https://portfolio-tuyk.vercel.app/",
-    technologies: ["Nextjs", "React", "Shadcn", "Motion.dev", "Versal"],
+    technologies: ["Nextjs", "React", "Shadcn", "Versal", "Motion.dev"],
   },
 ];
 export const Projects = () => {
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/40 mt-20">
+    <section id="contact" className="py-10 md:py-20 px-4 sm:px-6 lg:px-8 bg-secondary/40 mt-10 md:mt-20">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -46,7 +46,7 @@ export const Projects = () => {
               <div className="p-4 pb-8 text-foreground">
                 <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
                 <p className="text-sm 2xl:text-base">{project.description}</p>
-                <div className="flex items-center gap-1.5 mt-3">
+                <div className="flex items-center flex-wrap gap-1.5 mt-3">
                   {project.technologies.map((t) => (
                     <div key={t} className="px-3 py-1 rounded-2xl bg-foreground text-background text-xs">
                       {t}

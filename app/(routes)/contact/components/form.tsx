@@ -1,8 +1,8 @@
 "use client";
 import { useCallback, useRef, useState } from "react";
 
-import { toast } from "react-toastify";
 import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 
 import { Form } from "@/components/ui/form";
@@ -11,20 +11,21 @@ import { FormInput } from "@/app/common/components/text-input";
 const defaultValues = {
   name: "",
   email: "",
-  phoneNumber: "",
   subject: "",
   message: "",
+  phoneNumber: "",
 };
 
 export const ContactForm = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const form = useForm({ defaultValues: defaultValues, mode: "all" });
   const { control, formState, reset, handleSubmit } = form;
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const onSubmit = useCallback(() => {
     if (!formRef.current) return;
-
     setIsSubmitting(true);
     toast.promise(
       emailjs

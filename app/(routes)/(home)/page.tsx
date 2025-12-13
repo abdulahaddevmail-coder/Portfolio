@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 
 import { Hero } from "./components/hero";
-// import { Contact } from "./components/contact";
 import { About } from "./components/about";
-import { Contact } from "./components/contact-v2";
 import { TechnicalSkills } from "./components/skills";
+import { Contact } from "./components/contact";
+import { Projects } from "./components/projects";
 
 export const metadata: Metadata = {
   alternates: {
@@ -18,6 +18,7 @@ export default function Home() {
       <Hero />
       <About />
       <TechnicalSkills />
+      <Projects />
       <Contact />
     </main>
   );

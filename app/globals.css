@@ -67,6 +67,7 @@
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
     --glass: "hsla(0, 0%, 49%, .1)";
+    --glass-nav: "hsla(240, 5%, 15%, .4)";
     --glass-shadow: "hsla(240, 5%, 15%, .08)";
     --glass-border: "hsla(240, 5%, 85%, .3)";
   }

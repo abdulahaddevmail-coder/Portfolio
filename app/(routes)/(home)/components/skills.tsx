@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 
 import { useMediaQuery } from "@/hooks/media-query";
 
+import { Activity } from "@/components/ui/activity";
 import FloatingIcon from "@/components/ui/floating-icons";
 
 const logosArr = [
@@ -33,11 +34,16 @@ export const TechnicalSkills = () => {
   const logos = useMemo(
     () =>
       logosArr.map((logo) => {
-        if (theme === "dark" && logo.src === "/icons/nextjs.svg") {
-          return { ...logo, src: "/icons/nextjs-white.svg" };
-        } else {
-          return logo;
+        if (theme === "dark") {
+          if (logo.src === "/icons/nextjs.svg") {
+            return { ...logo, src: "/icons/nextjs-white.svg" };
+          } else if (logo.src === "/icons/express.svg") {
+            return { ...logo, src: "/icons/express-white.svg" };
+          } else if (logo.src === "/icons/git.svg") {
+            return { ...logo, src: "/icons/git-white.svg" };
+          }
         }
+        return logo;
       }),
     [theme]
   );
@@ -80,28 +86,32 @@ export const TechnicalSkills = () => {
         <div ref={ref}>
           <div className="grid place-items-center gap-y-16 py-20 md:py-0">
             <div className="text-xl font-semibold text-center text-muted-foreground uppercase">My Technical Skills</div>
-            <div className="grid md:hidden gap-y-8">
-              <div className="text-nowrap text-center font-bold text-5xl md:text-7xl text-shadow-xs">
-                <div>Let&apos;s Build</div>
+            <Activity query="up.sm">
+              <div className="grid md:hidden gap-y-8">
+                <div className="text-nowrap text-center font-black text-5xl md:text-7xl text-shadow-xs">
+                  <div>Let&apos;s Build</div>
+                </div>
+                <div className="text-nowrap text-center font-black text-5xl md:text-7xl text-shadow-xs">
+                  <div>Your</div>
+                </div>
+                <div className="text-nowrap text-center font-black text-5xl md:text-7xl text-shadow-xs">
+                  <div>Solution</div>
+                </div>
               </div>
-              <div className="text-nowrap text-center font-bold text-5xl md:text-7xl text-shadow-xs">
-                <div>Your</div>
+            </Activity>
+            <Activity query="down.sm">
+              <div className="hidden md:grid gap-y-8 md:gap-y-10">
+                <div className="text-nowrap text-center font-bold text-5xl md:text-7xl text-shadow-xs">
+                  <motion.div style={{ opacity: line1Opacity, y: line1Y, scale: scale1 }}>Let&apos;s Build</motion.div>
+                </div>
+                <div className="text-nowrap text-center font-bold text-5xl md:text-7xl text-shadow-xs">
+                  <motion.div style={{ opacity: line2Opacity, y: line2Y, scale: scale2 }}>Your</motion.div>
+                </div>
+                <div className="text-nowrap text-center font-bold text-5xl md:text-7xl text-shadow-xs">
+                  <motion.div style={{ opacity: line3Opacity, y: line3Y, scale: scale3 }}>Solution</motion.div>
+                </div>
               </div>
-              <div className="text-nowrap text-center font-bold text-5xl md:text-7xl text-shadow-xs">
-                <div>Solution</div>
-              </div>
-            </div>
-            <div className="hidden md:grid gap-y-8 md:gap-y-10">
-              <div className="text-nowrap text-center font-bold text-5xl md:text-7xl text-shadow-xs">
-                <motion.div style={{ opacity: line1Opacity, y: line1Y, scale: scale1 }}>Let&apos;s Build</motion.div>
-              </div>
-              <div className="text-nowrap text-center font-bold text-5xl md:text-7xl text-shadow-xs">
-                <motion.div style={{ opacity: line2Opacity, y: line2Y, scale: scale2 }}>Your</motion.div>
-              </div>
-              <div className="text-nowrap text-center font-bold text-5xl md:text-7xl text-shadow-xs">
-                <motion.div style={{ opacity: line3Opacity, y: line3Y, scale: scale3 }}>Solution</motion.div>
-              </div>
-            </div>
+            </Activity>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import { Cloud, Database, PanelsTopLeft, Server, Settings, Sparkles } from "lucide-react";
 import Image from "next/image";
+import { Cloud, Database, PanelsTopLeft, Server, Settings, Sparkles } from "lucide-react";
 
 const data = [
   {
@@ -45,7 +45,6 @@ const data = [
       { name: "npm", icon: "npm" },
       { name: "VS Code", icon: "vscode" },
       { name: "Figma", icon: "figma2" },
-      // { name: "Postman", icon: "postman" },
     ],
   },
   {
@@ -61,7 +60,7 @@ const data = [
 
 export const TechnicalSkills = () => {
   return (
-    <section id="skills" className="pt-20 px-4 sm:px-6 lg:px-8">
+    <section className="pt-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="w-full text-center text-4xl md:text-5xl font-bold">

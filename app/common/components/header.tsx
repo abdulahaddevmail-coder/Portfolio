@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
-import { motion } from "motion/react";
 import { useTheme } from "next-themes";
+import { AnimatePresence, motion } from "motion/react";
+
+import { Activity } from "@/components/ui/activity";
 
 const SunMoonIcon: React.FC<{ isLightMode: boolean }> = ({ isLightMode = true }) => {
   return (
@@ -56,17 +58,61 @@ const SunMoonIcon: React.FC<{ isLightMode: boolean }> = ({ isLightMode = true })
   );
 };
 
+const MenuIcon = ({ isOpen }: { isOpen: boolean }) => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+      {/* Top Line */}
+      <motion.path
+        d="M4 6H16"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        animate={isOpen ? { y: 4, rotate: 45 } : { y: 0, rotate: 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        style={{ transformOrigin: "50% 50%" }}
+      />
+
+      {/* Bottom Line */}
+      <motion.path
+        d="M4 14H16"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        animate={isOpen ? { y: -4, rotate: -45 } : { y: 0, rotate: 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        style={{ transformOrigin: "50% 50%" }}
+      />
+    </svg>
+  );
+};
+
 const menu = [
   { name: "Home", href: "/", icon: "/icons/home.svg" },
   { name: "About", href: "/about", icon: "/icons/person.svg" },
-  { name: "blogs", href: "/blogs", icon: "/icons/pencil.svg" },
+  // { name: "blogs", href: "/blogs", icon: "/icons/pencil.svg" },
   { name: "Contact", href: "/contact", icon: "/icons/mail.svg" },
 ];
+
+const listVariants = {
+  open: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+  },
+  closed: {},
+};
+
+const itemVariants = {
+  closed: { opacity: 0, x: -20 },
+  open: { opacity: 1, x: 0, transition: { duration: 0.25 } },
+};
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
 
   const isLightMode = useMemo(() => theme === "light", [theme]);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
     const audio = new Audio("/water-tap.mp3"); // Make sure the sound file is in the /public directory
@@ -75,36 +121,96 @@ export const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-10">
-      <div className="w-[548px] hidden md:flex h-14 backdrop-blur-md bg-glass border border-foreground/10 rounded-full absolute top-10 left-1/2 -translate-x-1/2 overflow-hidden">
-        <div className="w-full flex justify-between items-center px-8">
-          <div className="w-10 flex basis-1/5">
-            <div className="relative bg-background rounded-full p-1">
-              <motion.div
-                animate={{ rotate: [10, -10, 10] }} // smooth keyframes
-                transition={{
-                  duration: 3,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                }}
-              >
-                <Image src="/avatar.jpg" width={40} height={40} alt="Avatar" className="rounded-full" />
-              </motion.div>
-              <div className="size-2 bg-green-500 rounded-full absolute top-1 right-1.5" />
+    <>
+      <header className="sticky top-0 z-10">
+        <motion.div
+          className={`w-[90%] sm:w-[548px] bg-[hsla(0,0%,93%,0.1)] backdrop-blur-xl rounded-4xl! border border-foreground/10 absolute top-8 left-1/2 -translate-x-1/2 overflow-hidden`}
+          animate={{
+            height: isOpen ? "auto" : "56px",
+          }}
+        >
+          <div className={`w-full flex justify-between items-center px-6 sm:px-8 h-14`}>
+            <div className="w-10 flex basis-1/5">
+              <div className="relative rounded-full p-1">
+                <motion.div
+                  animate={{ rotate: [10, -10, 10] }} // smooth keyframes
+                  transition={{
+                    duration: 3,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                  }}
+                >
+                  <Image src="/avatar.jpg" width={40} height={40} alt="Avatar" className="rounded-full" />
+                </motion.div>
+                <div className="size-2 bg-green-500 rounded-full absolute top-1 right-1.5" />
+              </div>
+            </div>
+            <Activity query="down.sm">
+              <div className="flex basis-[60%] justify-center items-center gap-4">
+                {menu.map((item) => (
+                  <Link key={item.name} href={item.href}>
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </Activity>
+            <div className="flex items-center basis-1/5 justify-end gap-1">
+              <button aria-label="switch-theme" onClick={handleClick} className="cursor-pointer">
+                <SunMoonIcon isLightMode={!isLightMode} />
+              </button>
+              <Activity query="up.sm">
+                <button
+                  onClick={() => setIsOpen((prev) => !prev)}
+                  className="rounded-12 px-2.5 focus-visible:ring-4 focus-visible:ring-[hsl(var(--blue-60)/50%)]"
+                >
+                  <MenuIcon isOpen={isOpen} />
+                </button>
+              </Activity>
             </div>
           </div>
-          <div className="flex basis-[60%] justify-center items-center gap-4">
-            {menu.map((item) => (
-              <Link key={item.name} href={item.href}>
-                {item.name}
-              </Link>
-            ))}
-          </div>
-          <button aria-label="switch-theme" onClick={handleClick} className="flex basis-1/5 justify-end cursor-pointer">
-            <SunMoonIcon isLightMode={!isLightMode} />
-          </button>
-        </div>
-      </div>
-    </header>
+          {/* Mobile Menu */}
+          <Activity query="up.sm">
+            <AnimatePresence mode="wait">
+              {isOpen && (
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: "auto",
+                    opacity: 1,
+                    transition: {
+                      height: { duration: 0.35, ease: "easeInOut" },
+                      opacity: { duration: 0.25, delay: 0.1 },
+                    },
+                  }}
+                  exit={{
+                    height: 0,
+                    opacity: 0,
+                    transition: {
+                      height: { duration: 0.35, ease: "easeInOut" },
+                      opacity: { duration: 0.2 },
+                    },
+                  }}
+                  className="overflow-hidden w-full"
+                >
+                  <motion.ul variants={listVariants} className="flex flex-col gap-6 px-8 py-4">
+                    {menu.map((item) => (
+                      <motion.li variants={itemVariants} key={item.name}>
+                        <Link
+                          href={item.href}
+                          onClick={() => setIsOpen(false)}
+                          className="text-lg font-semibold hover:opacity-80 block"
+                        >
+                          {item.name}
+                        </Link>
+                      </motion.li>
+                    ))}
+                  </motion.ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </Activity>
+        </motion.div>
+      </header>
+    </>
   );
 };

@@ -140,7 +140,7 @@ export const Header = () => {
                     repeat: Infinity,
                   }}
                 >
-                  <Image src="/avatar.jpg" width={40} height={40} alt="Avatar" className="rounded-full" />
+                  <Image src="/male-avatar.png" width={40} height={40} alt="Avatar" className="rounded-full" />
                 </motion.div>
                 <div className="size-2 bg-green-500 rounded-full absolute top-1 right-1.5" />
               </div>

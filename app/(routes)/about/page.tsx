@@ -1,9 +1,17 @@
 import Link from "next/link";
+import { Metadata } from "next";
 
-import { Contact } from "./components/get-in-touch";
-import { TechnicalSkills } from "./components/skills";
 import { ChevronRight } from "lucide-react";
+
 import { Projects } from "./components/projects";
+import { TechnicalSkills } from "./components/skills";
+import { Contact } from "./components/get-in-touch";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: `${process.env.SITE_URL}/about`,
+  },
+};
 
 export default function Page() {
   return (

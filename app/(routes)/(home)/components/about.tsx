@@ -49,8 +49,9 @@ export const About = () => {
           I’ve been developing digital solutions for more than <span className="text-nowrap">3 years</span>
         </h2>
         <p className="mb-6 text-black/70 text-sm lg:text-base">
-          Vitae enim ut interdum id mi sit id aliquam purus urna ipsum augue lorem est metus turpis tincidunt vitaeniolm
-          siet sollicitudin sit aliquet nunc a enim commodo.
+          Passionate software engineer building modern, scalable web applications and crafting responsive user
+          interfaces with clean, maintainable code and attention to performance, usability, and seamless user
+          experiences across devices.
         </p>
         <Link
           href="/about"

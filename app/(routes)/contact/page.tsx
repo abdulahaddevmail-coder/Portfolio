@@ -29,8 +29,8 @@ export default function Page() {
             </p>
             <h1 className="text-4xl font-bold leading-none mb-4">Contact me</h1>
             <p className="color-neutral-100 mb-6">
-              Sagittis posuere quisque nulla tincidunt ac lectus at lectus scelerisque sodalem ipsum praesent
-              <span className="text-no-wrap">fames at</span>
+              Feel free to reach out if you have any questions, need support, or are interested in partnership
+              opportunities.
             </p>
             <div className="flex flex-col gap-3.5 text-sm font-bold">
               <a

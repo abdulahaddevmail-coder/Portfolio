@@ -6,13 +6,7 @@ export const Footer = () => {
     <footer className="md:sticky md:bottom-0 md:-z-10 md:[--top-overlap:32px] grid w-full place-items-center px-10 md:px-20 pb-8 pt-[84px] lg:px-[116px] md:pb-0 md:-mt-(--top-overlap) md:h-[calc(444px+var(--top-overlap))] md:pt-[calc(72px+var(--top-overlap))] bg-foreground">
       <div className="w-full h-80 text-background flex flex-col justify-between">
         <div className="flex flex-col gap-y-2">
-          <Image
-            src="/avatar.jpg"
-            width={60}
-            height={60}
-            alt="Avatar"
-            className="rounded-full"
-          />
+          <Image src="/male-avatar.png" width={60} height={60} alt="Avatar" className="rounded-full" />
           <p className="text-2xl">Design a better digital experience.</p>
           <div className="flex flex-col gap-3.5 font-medium mt-6">
             <a
@@ -29,10 +23,7 @@ export const Footer = () => {
               />
               <div className="">abdulahad.devmail@gmail.com</div>
             </a>
-            <a
-              href="tel:(+92)313-6624697"
-              className="inline-flex items-center gap-4 transition hover:scale-[1.03]"
-            >
+            <a href="tel:(+92)313-6624697" className="inline-flex items-center gap-4 transition hover:scale-[1.03]">
               <Image
                 src="/phone.png"
                 loading="eager"
@@ -47,8 +38,7 @@ export const Footer = () => {
         </div>
         <div className="flex justify-center ">
           <p className="text-center text-background/60">
-            © {currentYear} Created by{" "}
-            <span className="text-background">Abdul Ahad</span>
+            © {currentYear} Created by <span className="text-background">Abdul Ahad</span>
           </p>
         </div>
       </div>
